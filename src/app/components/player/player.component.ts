@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, effect, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, effect, inject } from '@angular/core';
 import { Song } from 'src/app/interfaces/playlistData.interface';
 import { PlayerService } from 'src/app/services/player.service';
 
@@ -7,10 +7,13 @@ import { PlayerService } from 'src/app/services/player.service';
   templateUrl: './player.component.html',
   styles: ``
 })
-export class PlayerComponent implements AfterViewInit, OnInit {
+export class PlayerComponent {
   @ViewChild('Audio') audio!: ElementRef<HTMLAudioElement>;
   isPlaying = false;
   song?: Song;
+
+  currentTime: number = 0;
+  duration: number = 0;
 
   initialState = true;
 
@@ -29,29 +32,31 @@ export class PlayerComponent implements AfterViewInit, OnInit {
 
     effect(() => {
       const { playlist, song } = this.playerService.currentMusic;
-      // if (this.song === song) {
-      //   this.playerService.setIsPlaying(!this.playerService.isPlaying);
-      //   { allowSignalWrites: true }
-      //   return;
-      // }
       if (song) {
         this.song = song;
         const src = `../assets/music/${playlist?.albumId}/${song.id}.mp3`;
-        console.log(src);
         this.audio.nativeElement.src = src
         this.audio.nativeElement.play()
-        // this.audio.nativeElement.volume = volume;
       }
     });
   }
+  
+  onChangeAudio() {
+    this.duration = this.audio.nativeElement.duration;
+    this.currentTime = this.audio.nativeElement.currentTime;
+ }
 
-  ngAfterViewInit(): void {
-    // this.audio.nativeElement.src = '../assets/music/1.mp3';
-  }
+ onPlayerChange(event: Event): void {
+  const value = event.target as HTMLInputElement;
+  this.audio.nativeElement.currentTime = value.valueAsNumber;  
+ }
 
-  ngOnInit(): void {
+ formatTime(time: number): string {
+  const seconds = Math.floor(time % 60)
+  const minutes = Math.floor(time / 60)
 
-  }
+  return `${minutes}:${seconds.toString().padStart(2, '0')}`
+ }
 
   play(): void {
     this.playerService.setIsPlaying(!this.playerService.isPlaying);
