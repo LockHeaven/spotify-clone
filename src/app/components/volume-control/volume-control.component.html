@@ -1,0 +1,18 @@
+
+<div class="flex justify-center items-center gap-x-2 text-white">
+    <button class="opacity-70 hover:opacity-100 transition" (click)="setMute()">
+        @if (isVolumeSilence) {
+            <volume-silence-icon></volume-silence-icon>
+        } @else {
+            <volume-icon></volume-icon>
+        }
+    </button>
+    <input 
+        type="range" 
+        max="100" 
+        min="0" 
+        (input)="onChangeVolume($event)" 
+        [value]="volume" 
+        class="w-[100px]"/>
+</div> 
+  

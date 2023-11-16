@@ -1,0 +1,24 @@
+<nav class="min-h-full flex flex-col gap-2">
+    <div class="bg-zinc-900 rounded-lg p-2">
+      <ul>
+
+        <side-menu-item [icon]="'home'" [title]="'Home'"></side-menu-item>
+        
+        <side-menu-item [icon]="'search'" [title]="'Search'"></side-menu-item>
+
+      </ul>
+    </div>
+  
+    <div class="bg-zinc-900 rounded-lg p-2 flex-1">
+      <ul>
+        <side-menu-item [icon]="'library'" [title]="'Your Library'"></side-menu-item> 
+
+        <div class="overflow-y-auto">
+          @for (item of playlist; track $index) {
+            <side-menu-card [playlistItem]="item"></side-menu-card>
+          }
+        </div>
+
+      </ul>
+    </div>
+</nav>

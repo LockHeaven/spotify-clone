@@ -1,0 +1,26 @@
+<div class="flex flex-row justify-between w-full px-1 z-50">
+    <div class="w-[200px]">
+        <current-song></current-song>
+    </div>
+
+    <div class="grid place-content-center gap-4 flex-1">
+        <div class="flex justify-center flex-col items-center">
+            <button class="bg-white rounded-full p-2 disabled:opacity-75" (click)="play()" [disabled]="!song">
+                @if(playerService.isPlaying) {
+                    <pause-icon></pause-icon>
+                } @else {
+                    <play-icon></play-icon>
+                }
+
+            </button>
+            <input type="range"/>
+            <audio #Audio></audio>
+        </div>
+
+    </div>
+
+    <div class="w-52 grid place-content-center">
+        <volume-control></volume-control>
+    </div>
+</div>
+
