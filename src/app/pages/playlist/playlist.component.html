@@ -33,10 +33,18 @@
     </div>
   </header>
 
-  <div class="relative z-10 px-6 pt-10">
-    <!-- <Greeting /> -->
-    <div class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-[1]">
-    </div>
-
+  <div class="pl-6 pt-6">
+    <app-card-play-button [id]="playlist.id" [size]="'large'"></app-card-play-button>
   </div>
+
+  <div class="relative z-10 px-6 pt-10"></div>
+
+  <div
+    class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-[1]"
+  >
+  </div>
+
+  <section class="p-6">
+    <songs-table [songs]="playlistSongs"></songs-table>
+  </section>
 </div>

@@ -13,6 +13,7 @@ import { PlayerComponent } from './player/player.component';
 import { CardPlayButtonComponent } from './card-play-button/card-play-button.component';
 import { CurrentSongComponent } from './current-song/current-song.component';
 import { VolumeControlComponent } from './volume-control/volume-control.component';
+import { SongsTableComponent } from './songs-table/songs-table.component';
 
 
 const components = [
@@ -24,7 +25,8 @@ const components = [
   PlayerComponent,
   CardPlayButtonComponent,
   CurrentSongComponent,
-  VolumeControlComponent
+  VolumeControlComponent,
+  SongsTableComponent
 ]
 
 @NgModule({

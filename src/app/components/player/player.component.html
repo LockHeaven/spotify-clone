@@ -3,7 +3,7 @@
         <current-song></current-song>
     </div>
 
-    <div class="grid place-content-center gap-4 flex-1">
+    <div class="grid place-content-center gap-y-6 flex-1">
         <div class="flex justify-center flex-col items-center">
             <button class="bg-white rounded-full p-2 disabled:opacity-75" (click)="play()" [disabled]="!song">
                 @if(playerService.isPlaying) {
@@ -21,7 +21,7 @@
                     [min]="0"
                     [disabled]="!song"
                     (input)="onPlayerChange($event)"
-                    class="w-[400px]"
+                    class="w-[500px]"
                 />
                 <span class="opacity-50 w-12">
                   {{ duration ? formatTime(duration) : '0:00' }}
@@ -32,7 +32,7 @@
 
     </div>
 
-    <div class="w-52 grid place-content-center">
+    <div class="w-[200px] grid place-content-center">
         <volume-control></volume-control>
     </div>
 </div>

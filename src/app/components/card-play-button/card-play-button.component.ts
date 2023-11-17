@@ -9,12 +9,15 @@ import { PlayerService } from 'src/app/services/player.service';
 })
 export class CardPlayButtonComponent implements OnInit {
   @Input() id: string = '';
+  @Input() size: string = 'small';
   
+  iconClassName: string = '';
+
   playerService = inject(PlayerService);
   dataService = inject(DataService);
 
   ngOnInit(): void {  
-    
+    this.iconClassName = this.size === 'small' ? 'w-4 h-4' : 'w-5 h-5';
   }
 
   play(): void {

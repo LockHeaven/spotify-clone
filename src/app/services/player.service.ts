@@ -14,7 +14,7 @@ export class PlayerService {
 
   private _isPlaying = signal(false);
 
-  private _currentMusic = signal<CurrentMusic>({});
+  private _currentMusic = signal<CurrentMusic>({songs: []});
 
   private _volume = signal(1);
 
