@@ -10,6 +10,8 @@ import { VolumeIconComponent } from './volume-icon/volume-icon.component';
 import { VolumeSilenceIconComponent } from './volume-silence-icon/volume-silence-icon.component';
 import { NextIconComponent } from './next-icon/next-icon.component';
 import { PreviousIconComponent } from './previous-icon/previous-icon.component';
+import { NextPageIconComponent } from './next-page-icon/next-page-icon.component';
+import { PreviousPageIconComponent } from './previous-page-icon/previous-page-icon.component';
 
 
 const Icons = [
@@ -22,7 +24,9 @@ const Icons = [
   VolumeIconComponent,
   VolumeSilenceIconComponent,
   NextIconComponent,
-  PreviousIconComponent
+  PreviousIconComponent,
+  NextPageIconComponent,
+  PreviousPageIconComponent
 ]
 
 
