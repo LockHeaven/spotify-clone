@@ -8,6 +8,8 @@ import { SearchIconComponent } from './search-icon/search-icon.component';
 import { TimeIconComponent } from './time-icon/time-icon.component';
 import { VolumeIconComponent } from './volume-icon/volume-icon.component';
 import { VolumeSilenceIconComponent } from './volume-silence-icon/volume-silence-icon.component';
+import { NextIconComponent } from './next-icon/next-icon.component';
+import { PreviousIconComponent } from './previous-icon/previous-icon.component';
 
 
 const Icons = [
@@ -18,7 +20,9 @@ const Icons = [
   SearchIconComponent,
   TimeIconComponent,
   VolumeIconComponent,
-  VolumeSilenceIconComponent  
+  VolumeSilenceIconComponent,
+  NextIconComponent,
+  PreviousIconComponent
 ]
 
 

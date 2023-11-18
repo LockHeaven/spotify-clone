@@ -28,9 +28,53 @@ export class PlayerService {
   public get currentMusic() {
     return this._currentMusic();
   }
-  public set currentMusic(value: CurrentMusic) {
+  public setCurrentMusic(value: CurrentMusic) {
     this._currentMusic.set(value);
   }
+  public nextSong(): void {
+    const nextSong = this.currentMusic;
+    const index = nextSong.songs?.indexOf(nextSong.song!);
+    if (this.hasNextSong()) {
+      nextSong.song = nextSong.songs![index! + 1];
+      const { playlist, song, songs } = nextSong;
+      this._currentMusic.set({ playlist, song, songs });
+    }
+  }
+  public previousSong(): boolean {
+    const nextSong = this.currentMusic;
+    const index = nextSong.songs?.indexOf(nextSong.song!);
+    if (this.hasPreviousSong()) {
+      nextSong.song = nextSong.songs![index! - 1];
+      const { playlist, song, songs } = nextSong;
+      this._currentMusic.set({ playlist, song, songs });
+      return true;
+    }
+    return false;
+  }
+  hasNextSong(): boolean {
+    if (!this.currentMusic.songs || !this.currentMusic.song) {
+      return false;
+    }
+    const lengthSongs = this.currentMusic.songs.length;
+    const nextSong = this.currentMusic;
+    const index = nextSong.songs?.indexOf(nextSong.song!);
+    if (this.currentMusic.song.id < lengthSongs) {
+      return true;
+    }
+    return false;
+  }
+  hasPreviousSong(): boolean {
+    if (!this.currentMusic.songs || !this.currentMusic.song) {
+      return false;
+    }
+    const nextSong = this.currentMusic;
+    const index = nextSong.songs?.indexOf(nextSong.song!);
+    if (this.currentMusic.song.id > 1) {
+      return true;
+    }
+    return false;
+  }
+
 
   public get volume() {
     return this._volume();

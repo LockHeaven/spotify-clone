@@ -30,7 +30,7 @@ export class CardPlayButtonComponent implements OnInit {
     const song = songs[0]
     
     this.playerService.setIsPlaying(true);
-    this.playerService.currentMusic = { playlist, songs, song }
+    this.playerService.setCurrentMusic({ playlist, songs, song })
   }
 
   get isPlayingPlaylist(): boolean {

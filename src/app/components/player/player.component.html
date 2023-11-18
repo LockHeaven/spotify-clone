@@ -5,13 +5,21 @@
 
     <div class="grid place-content-center gap-y-6 flex-1">
         <div class="flex justify-center flex-col items-center">
-            <button class="bg-white rounded-full p-2 disabled:opacity-75" (click)="play()" [disabled]="!song">
-                @if(playerService.isPlaying) {
-                    <pause-icon></pause-icon>
-                } @else {
-                    <play-icon></play-icon>
-                }
-            </button>
+            <div class="flex flex-row items-center justify-evenly">
+                <button class="rounded-full p-1 disabled:opacity-75" [disabled]="!song || !playerService.hasPreviousSong()" (click)="previousSong()">
+                    <previous-icon class="fill-white"></previous-icon>
+                </button>
+                <button class="bg-white rounded-full p-2 disabled:opacity-75 mx-5" (click)="play()" [disabled]="!song">
+                    @if(playerService.isPlaying) {
+                        <pause-icon></pause-icon>
+                    } @else {
+                        <play-icon></play-icon>
+                    }
+                </button>
+                <button class="rounded-full p-1 disabled:opacity-75" [disabled]="!song || !playerService.hasNextSong()" (click)="onEndSong()">
+                    <next-icon class="fill-white"></next-icon>
+                </button>
+            </div>
             <div class="flex items-center gap-x-3 text-xs pt-2">
                 <span class="opacity-50 w-12 text-right">{{ formatTime(currentTime) }}</span>
                 <input
@@ -27,7 +35,7 @@
                   {{ duration ? formatTime(duration) : '0:00' }}
                 </span>
               </div>
-            <audio #Audio (timeupdate)="onChangeAudio()"></audio>
+            <audio #Audio (timeupdate)="onChangeAudio()" (ended)="onEndSong()"></audio>
         </div>
 
     </div>
