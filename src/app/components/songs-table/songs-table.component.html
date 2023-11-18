@@ -11,8 +11,21 @@
     <tbody>
       <tr class="h-[16px]"></tr>
         @for (song of songs; track $index) {
-            <tr class="border-spacing-0 text-gray-300 text-sm font-light hover:bg-white/10 overflow-hidden transition duration-300">
-              <td class="px-4 py-2 rounded-tl-lg rounded-bl-lg w-5">{{$index + 1}}</td>
+            <tr class="border-spacing-0 text-gray-300 text-sm font-light overflow-hidden transition duration-200"
+                (dblclick)="playSong(song)" [ngClass]="checkPlayingSong(song)" (mouseenter)="mouseEnter(song)" (mouseleave)="mouseOut()">
+              <td class="px-3 py-2 rounded-tl-lg rounded-bl-lg w-5">
+                @if (isPlaying && song == playingSong) {
+                  <button (click)="pauseSong()">
+                    <pause-icon class="fill-white" [size]="'h-3 w-3'"></pause-icon>
+                  </button>
+                } @else if (iconPlay && song === hoverSong) {
+                  <button (click)="playSong(song)">
+                    <play-icon class="fill-white" [size]="'h-3 w-3'"></play-icon>
+                  </button>
+                } @else {
+                  {{$index + 1}}
+                }
+              </td>
               <td class="px-4 py-2 flex gap-3">
                 <picture class="">
                   <img [src]="song.image" [alt]="song.title" class="w-11 h-11" />

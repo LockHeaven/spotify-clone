@@ -1,5 +1,5 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { Playlist, Song } from '../interfaces/playlistData.interface';
+import { Playlist, Song, allPlaylists, songs } from '../interfaces/playlistData.interface';
 
 interface CurrentMusic {
   playlist?: Playlist,
@@ -74,7 +74,14 @@ export class PlayerService {
     }
     return false;
   }
-
+  findPlaylist(id: number): Playlist {
+    const playlist = allPlaylists.find(playlist => playlist.albumId === id)!;
+    return playlist;
+  }
+  findPlaylistSongs(idPlaylist: number): Song[] {
+    const playlistSongs = songs.filter(song => song.albumId === idPlaylist);
+    return playlistSongs;
+  }
 
   public get volume() {
     return this._volume();

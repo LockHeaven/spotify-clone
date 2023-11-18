@@ -34,7 +34,7 @@
   </header>
 
   <div class="pl-6 pt-6">
-    <app-card-play-button [id]="playlist.id" [size]="'large'"></app-card-play-button>
+    <app-card-play-button [id]="playlist.albumId" [size]="'large'"></app-card-play-button>
   </div>
 
   <div class="relative z-10 px-6 pt-10"></div>
@@ -45,6 +45,6 @@
   </div>
 
   <section class="p-6">
-    <songs-table [songs]="playlistSongs"></songs-table>
+    <songs-table [songs]="playlistSongs" [playlist]="playlist"></songs-table>
   </section>
 </div>
